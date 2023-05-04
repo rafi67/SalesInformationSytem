@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SalesInformationSystem.Models;
 using SalesInformationSystem.ViewModel;
 
@@ -62,6 +63,8 @@ namespace SalesInformationSystem.Controllers
                 sm.CustomerName = model.CustomerName;
                 sm.CustomerAddress = model.CustomerAddress;
                 sm.Gender = model.Gender;
+                db.Entry(sm).State = EntityState.Modified;
+                db.SaveChanges();
                 var sdr = db.SaleDetails.Where(x => x.SaleId == model.SaleId).ToList();
                 db.SaleDetails.RemoveRange(sdr);
                 db.SaveChanges();

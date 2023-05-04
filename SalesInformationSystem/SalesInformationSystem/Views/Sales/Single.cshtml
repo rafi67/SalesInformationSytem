@@ -71,7 +71,6 @@
         <th>CustomerName</th>
         <th>CustomerAddress</th>
         <th>Gender</th>
-        <th>Photo</th>
     </tr>
     @foreach (var list in listMaster)
     {
@@ -80,7 +79,6 @@
             <td>@list.CustomerName</td>
             <td>@list.CustomerAddress</td>
             <td>@list.Gender</td>
-            <td><img src="/image/" /></td>
             <td><a href="/Sales/Single?id=@list.SaleId">Edit</a></td>
             <td><a href="/Sales/SingleDelete?id=@list.SaleId">Delete</a></td>
         </tr>
