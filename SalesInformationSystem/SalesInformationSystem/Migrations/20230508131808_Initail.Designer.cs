@@ -12,8 +12,8 @@ using SalesInformationSystem.Models;
 namespace SalesInformationSystem.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230503161847_Initial")]
-    partial class Initial
+    [Migration("20230508131808_Initail")]
+    partial class Initail
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,7 @@ namespace SalesInformationSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("SaleDetailId"), 1L, 1);
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
@@ -43,6 +43,8 @@ namespace SalesInformationSystem.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("SaleDetailId");
+
+                    b.HasIndex("SaleId");
 
                     b.ToTable("SaleDetails");
                 });
@@ -73,6 +75,20 @@ namespace SalesInformationSystem.Migrations
                     b.HasKey("SaleId");
 
                     b.ToTable("SaleMasters");
+                });
+
+            modelBuilder.Entity("SalesInformationSystem.Models.SaleDetail", b =>
+                {
+                    b.HasOne("SalesInformationSystem.Models.SaleMaster", "SaleMaster")
+                        .WithMany("SaleDetails")
+                        .HasForeignKey("SaleId");
+
+                    b.Navigation("SaleMaster");
+                });
+
+            modelBuilder.Entity("SalesInformationSystem.Models.SaleMaster", b =>
+                {
+                    b.Navigation("SaleDetails");
                 });
 #pragma warning restore 612, 618
         }

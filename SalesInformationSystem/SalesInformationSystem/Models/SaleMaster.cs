@@ -10,5 +10,6 @@ namespace SalesInformationSystem.Models
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public string Gender { get; set; }
+        public ICollection<SaleDetail> SaleDetails { get; set; }
     }
 }
