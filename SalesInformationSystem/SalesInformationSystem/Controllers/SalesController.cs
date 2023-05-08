@@ -7,7 +7,7 @@ namespace SalesInformationSystem.Controllers
 {
     public class SalesController : Controller
     {
-        private readonly Context db = null;
+        private readonly Context db;
         public SalesController(Context db)
         {
             this.db = db;
